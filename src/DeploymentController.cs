@@ -21,23 +21,16 @@ static class DeploymentController
     private const int SHIPS_TOP = 98;
     private const int SHIPS_LEFT = 20;
     private const int SHIPS_HEIGHT = 90;
-
     private const int SHIPS_WIDTH = 300;
     private const int TOP_BUTTONS_TOP = 72;
-
     private const int TOP_BUTTONS_HEIGHT = 46;
     private const int PLAY_BUTTON_LEFT = 693;
-
     private const int PLAY_BUTTON_WIDTH = 80;
     private const int UP_DOWN_BUTTON_LEFT = 410;
-
     private const int LEFT_RIGHT_BUTTON_LEFT = 350;
     private const int RANDOM_BUTTON_LEFT = 547;
-
     private const int RANDOM_BUTTON_WIDTH = 51;
-
     private const int DIR_BUTTONS_WIDTH = 47;
-
     private const int TEXT_OFFSET = 5;
     private static Direction _currentDirection = Direction.UpDown;
 
@@ -46,8 +39,8 @@ static class DeploymentController
     /// Handles user input for the Deployment phase of the game.
     /// </summary>
     /// <remarks>
-    /// Involves selecting the ships, deloying ships, changing the direction
-    /// of the ships to add, randomising deployment, end then ending
+    /// Involves selecting the ships, deploying ships, changing the direction
+    /// of the ships to add, randomizing deployment, end then ending
     /// deployment
     /// </remarks>
     public static void HandleDeploymentInput()
@@ -99,13 +92,12 @@ static class DeploymentController
     private static void DoDeployClick()
     {
         Point2D mouse = default(Point2D);
-
         mouse = SwinGame.MousePosition();
 
         //Calculate the row/col clicked
         int row = 0;
         int col = 0;
-        row = Convert.ToInt32(Math.Floor((mouse.Y) / (CELL_HEIGHT + CELL_GAP)));
+        row = Convert.ToInt32(Math.Floor((mouse.Y - FIELD_TOP) / (CELL_HEIGHT + CELL_GAP)));
         col = Convert.ToInt32(Math.Floor((mouse.X - FIELD_LEFT) / (CELL_WIDTH + CELL_GAP)));
 
         if (row >= 0 & row < HumanPlayer.PlayerGrid.Height) {

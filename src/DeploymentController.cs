@@ -20,6 +20,7 @@ static class DeploymentController
 {
     private const int SHIPS_TOP = 98;
     private const int SHIPS_LEFT = 20;
+    private const int SHIPS_RIGHT = 320;
     private const int SHIPS_HEIGHT = 90;
     private const int SHIPS_WIDTH = 300;
     private const int TOP_BUTTONS_TOP = 72;
@@ -32,9 +33,10 @@ static class DeploymentController
     private const int RANDOM_BUTTON_WIDTH = 51;
     private const int DIR_BUTTONS_WIDTH = 47;
     private const int TEXT_OFFSET = 5;
-    private static Direction _currentDirection = Direction.UpDown;
 
+    private static Direction _currentDirection = Direction.UpDown;
     private static ShipName _selectedShip = ShipName.Tug;
+
     /// <summary>
     /// Handles user input for the Deployment phase of the game.
     /// </summary>
@@ -138,7 +140,11 @@ static class DeploymentController
             i = ((int) sn) - 1;
             if (i >= 0) {
                 if (sn == _selectedShip) {
+
+                    String boatName = Convert.ToString(sn);
                     SwinGame.DrawBitmap(GameImage("SelectedShip"), SHIPS_LEFT, SHIPS_TOP + i * SHIPS_HEIGHT);
+                    SwinGame.DrawText(boatName, Color.White, GameFont("Menu"), SHIPS_RIGHT / 2, SHIPS_TOP + i * SHIPS_HEIGHT + 19);
+                    
                     // SwinGame.FillRectangle(Color.LightBlue, SHIPS_LEFT, SHIPS_TOP + i * SHIPS_HEIGHT, SHIPS_WIDTH, SHIPS_HEIGHT)
                     //Else
                     // SwinGame.FillRectangle(Color.Gray, SHIPS_LEFT, SHIPS_TOP + i * SHIPS_HEIGHT, SHIPS_WIDTH, SHIPS_HEIGHT)
@@ -172,10 +178,12 @@ static class DeploymentController
             i = ((int) sn) - 1;
 
             if (IsMouseInRectangle(SHIPS_LEFT, SHIPS_TOP + i * SHIPS_HEIGHT, SHIPS_WIDTH, SHIPS_HEIGHT)) {
+
                 return sn;
             }
         }
 
         return ShipName.None;
     }
+
 }

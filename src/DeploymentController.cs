@@ -142,8 +142,14 @@ static class DeploymentController
                 if (sn == _selectedShip) {
 
                     String boatName = Convert.ToString(sn);
+
+                    if (boatName == "AircraftCarrier")
+                    {
+                    	boatName = "Aircraft Carrier";
+                    }
+
                     SwinGame.DrawBitmap(GameImage("SelectedShip"), SHIPS_LEFT, SHIPS_TOP + i * SHIPS_HEIGHT);
-                    SwinGame.DrawText(boatName, Color.White, GameFont("Menu"), SHIPS_RIGHT / 2, SHIPS_TOP + i * SHIPS_HEIGHT + 19);
+                    SwinGame.DrawTextLines(boatName, Color.White, SwinGame.RGBAColor(0, 0, 0, 0), GameFont("DeployName"), SwinGame.TextAlignmentFrom("r"), SHIPS_LEFT + 20, SHIPS_TOP + i * SHIPS_HEIGHT + 16, 250, 600);
                     
                     // SwinGame.FillRectangle(Color.LightBlue, SHIPS_LEFT, SHIPS_TOP + i * SHIPS_HEIGHT, SHIPS_WIDTH, SHIPS_HEIGHT)
                     //Else

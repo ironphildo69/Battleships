@@ -18,10 +18,16 @@ public static class GameResources
     private static void LoadFonts()
     {
         NewFont("ArialLarge", "arial.ttf", 80);
-        NewFont("Courier", "cour.ttf", 14);
-        NewFont("CourierSmall", "cour.ttf", 8);
-        NewFont("Menu", "ffaccess.ttf", 8);
+<<<<<<< HEAD
+      //  NewFont("Courier", "cour.ttf", 14);
+      //  NewFont("CourierSmall", "cour.ttf", 8);
+      //  NewFont("Menu", "ffaccess.ttf", 8);
         NewFont("DeployName", "ffaccess.ttf", 14);
+=======
+        NewFont("Courier", "cour.ttf", 20);
+        NewFont("CourierSmall", "cour.ttf", 15);
+        NewFont("Menu", "ffaccess.ttf", 12);
+>>>>>>> changing-font
     }
 
     private static void LoadImages()

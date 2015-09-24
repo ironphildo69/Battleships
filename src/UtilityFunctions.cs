@@ -94,8 +94,8 @@ static class UtilityFunctions
     /// <param name="thePlayer">the player to show the ships of</param>
     public static void DrawSmallField(ISeaGrid grid, Player thePlayer)
     {
-        const int SMALL_FIELD_LEFT = 39;
-        const int SMALL_FIELD_TOP = 373;
+        const int SMALL_FIELD_LEFT = 39  ;
+        const int SMALL_FIELD_TOP = 373  ;
         const int SMALL_FIELD_WIDTH = 166;
         const int SMALL_FIELD_HEIGHT = 166;
         const int SMALL_FIELD_CELL_WIDTH = 13;
@@ -111,7 +111,8 @@ static class UtilityFunctions
     /// </summary>
     /// <param name="grid">the grid to show</param>
     /// <param name="thePlayer">the player to show the ships of</param>
-    /// <param name="small">true if the small grid is shown</param>
+    /// <param name="small">true if the small grid is shown</param>run.sh
+
     /// <param name="showShips">true if ships are to be shown</param>
     /// <param name="left">the left side of the grid</param>
     /// <param name="top">the top of the grid</param>

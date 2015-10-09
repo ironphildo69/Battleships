@@ -168,6 +168,36 @@ static class UtilityFunctions
 
                 if (draw) {
                     SwinGame.FillRectangle(fillColor, colLeft, rowTop, cellWidth, cellHeight);
+					//Draw the ships
+                    int shipHeight1 = 0;
+                    int shipWidth1 = 0;
+                    string shipName1 = null;
+                    foreach (Ship s in thePlayer)
+                    {
+                        if (s == null || !s.IsDestroyed)
+                            continue;
+                        int rowTop1 = top + (cellGap + cellHeight) * s.Row + SHIP_GAP;
+                        int colLeft1 = left + (cellGap + cellWidth) * s.Column + SHIP_GAP;
+
+                        if (s.Direction == Direction.LeftRight)
+                        {
+                            shipName1 = "ShipLR" + s.Size;
+                            shipHeight1 = cellHeight - (SHIP_GAP * 2);
+                            shipWidth1 = (cellWidth + cellGap) * s.Size - (SHIP_GAP * 2) - cellGap;
+                        }
+                        else
+                        {
+                            //Up down
+                            shipName1 = "ShipUD" + s.Size;
+                            shipHeight1 = (cellHeight + cellGap) * s.Size - (SHIP_GAP * 2) - cellGap;
+                            shipWidth1 = cellWidth - (SHIP_GAP * 2);
+                        }
+
+                        if (!small)
+                        {
+                            SwinGame.DrawBitmap(GameImage(shipName1), colLeft1, rowTop1);
+                        }
+                    }
                     if (!small) {
                         SwinGame.DrawRectangle(OUTLINE_COLOR, colLeft, rowTop, cellWidth, cellHeight);
                     }

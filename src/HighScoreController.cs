@@ -131,6 +131,7 @@ static class HighScoreController
             LoadScores();
 
         SwinGame.DrawText("   High Scores   ", Color.White, GameFont("Courier"), SCORES_LEFT, SCORES_HEADING);
+        SwinGame.DrawBitmap(GameImage("Back"), 50, 500);  // Added line of code to draw back button
 
         //For all of the scores
         int i = 0;
@@ -154,8 +155,9 @@ static class HighScoreController
     /// <remarks></remarks>
     public static void HandleHighScoreInput()
     {
-        if (SwinGame.MouseClicked(MouseButton.LeftButton) || SwinGame.KeyTyped(KeyCode.vk_ESCAPE) || SwinGame.KeyTyped(KeyCode.vk_RETURN)) {
-            EndCurrentState();
+        if (SwinGame.MouseClicked(MouseButton.LeftButton) & IsMouseInRectangle(50, 500, 119, 46))
+        {
+           	EndCurrentState();
         }
     }
 
@@ -191,7 +193,7 @@ static class HighScoreController
 
                 DrawBackground();
                 DrawHighScores();
-                SwinGame.DrawText("Name: ", Color.White, GameFont("Courier"), SCORES_LEFT, ENTRY_TOP);
+                SwinGame.DrawText("Name: ", Color.White, GameFont("Courier"), SCORES_LEFT, ENTRY_TOP);                
                 SwinGame.RefreshScreen();
             }
 

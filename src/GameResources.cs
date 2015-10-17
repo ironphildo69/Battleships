@@ -55,6 +55,10 @@ public static class GameResources
         NewImage("Explosion", "explosion.png");
         NewImage("Splash", "splash.png");
 
+        //Back
+        NewImage("Back", "back.png");
+
+
     }
 
     private static void LoadSounds()

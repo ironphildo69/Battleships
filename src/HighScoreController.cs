@@ -155,10 +155,10 @@ static class HighScoreController
     /// <remarks></remarks>
     public static void HandleHighScoreInput()
     {
-        if (SwinGame.MouseClicked(MouseButton.LeftButton) &  SwinGame.PointInRect(MouseX(),MouseY(),50,500,119,46))
-         {
-            EndCurrentState();
-         }
+        if (SwinGame.MouseClicked(MouseButton.LeftButton) & IsMouseInRectangle(50, 500, 119, 46))
+        {
+           	EndCurrentState();
+        }
     }
 
     /// <summary>

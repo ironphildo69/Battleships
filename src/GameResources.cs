@@ -56,7 +56,7 @@ public static class GameResources
         NewImage("Splash", "splash.png");
 
         //Back
-         NewImage("Back", "back.png");
+        NewImage("Back", "back.png");
 
 
     }

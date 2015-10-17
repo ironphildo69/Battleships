@@ -131,7 +131,7 @@ static class HighScoreController
             LoadScores();
 
         SwinGame.DrawText("   High Scores   ", Color.White, GameFont("Courier"), SCORES_LEFT, SCORES_HEADING);
-
+        SwinGame.DrawBitmap(GameImage("Back"), 150, 150);  // Added line of code to draw back button
 
         //For all of the scores
         int i = 0;
@@ -193,8 +193,7 @@ static class HighScoreController
 
                 DrawBackground();
                 DrawHighScores();
-                SwinGame.DrawText("Name: ", Color.White, GameFont("Courier"), SCORES_LEFT, ENTRY_TOP);
-                SwinGame.DrawBitmap(GameImage("back"),150,150);     // my added line of code to draw back button
+                SwinGame.DrawText("Name: ", Color.White, GameFont("Courier"), SCORES_LEFT, ENTRY_TOP);                
                 SwinGame.RefreshScreen();
             }
 

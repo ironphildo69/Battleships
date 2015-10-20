@@ -40,8 +40,8 @@ static class MenuController
             "QUIT"
         },
         new string[] {
+            "",
             "EASY",
-            "MEDIUM",
             "HARD"
         }
 
@@ -174,7 +174,7 @@ static class MenuController
         //SwinGame.DrawText("Settings", Color.White, GameFont("ArialLarge"), 50, 50)
 
         DrawButtons(MAIN_MENU);
-        DrawButtons(SETUP_MENU, 1, 1);
+        DrawButtons(SETUP_MENU, 1, 85);
     }
 
     /// <summary>
@@ -200,14 +200,14 @@ static class MenuController
     private static void DrawButtons(int menu, int level, int xOffset)
     {
         int btnLeft = 0;
-        btnLeft = MENU_LEFT + BUTTON_SEP;
+        btnLeft = MENU_LEFT + BUTTON_SEP + xOffset;
         //* level
 
         int i = 0;
         for (i = 0; i <= _menuStructure[menu].Length - 1; i++) {
 
             int btnTop = 0;
-        	btnTop = MENU_TOP + (MENU_GAP + BUTTON_HEIGHT) * (i + xOffset);
+        	btnTop = MENU_TOP + (MENU_GAP + BUTTON_HEIGHT) * (i);
 
             //SwinGame.FillRectangle(Color.White, btnLeft, btnTop, BUTTON_WIDTH, BUTTON_HEIGHT)
             SwinGame.DrawTextLines(_menuStructure[menu][i], MENU_COLOR, SwinGame.RGBAColor(0, 0, 0, 0), GameFont("Menu"), FontAlignment.AlignCenter, btnLeft + TEXT_OFFSET, btnTop + TEXT_OFFSET, BUTTON_WIDTH, BUTTON_HEIGHT);
@@ -295,11 +295,11 @@ static class MenuController
     private static void PerformSetupMenuAction(int button)
     {
         switch (button) {
-            case SETUP_MENU_EASY_BUTTON:
-                SetDifficulty(AIOption.Hard);
-                break;
+            // case SETUP_MENU_EASY_BUTTON:
+            //     SetDifficulty(AIOption.Medium);
+            //     break;
             case SETUP_MENU_MEDIUM_BUTTON:
-                SetDifficulty(AIOption.Hard);
+                SetDifficulty(AIOption.Medium);
                 break;
             case SETUP_MENU_HARD_BUTTON:
                 SetDifficulty(AIOption.Hard);

@@ -300,6 +300,9 @@ public static class GameController
 			case GameState.ViewingHighScores:
 				HandleHighScoreInput();
 				break;
+			case GameState.QuitConfirm:
+				HandleQuitMenuInput();
+				break;
 		}
 
 		UpdateAnimations();
@@ -336,6 +339,9 @@ public static class GameController
 				break;
 			case GameState.ViewingHighScores:
 				DrawHighScores();
+				break;
+			case GameState.QuitConfirm:
+				DrawQuit();
 				break;
 		}
 

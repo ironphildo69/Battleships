@@ -40,12 +40,15 @@ static class MenuController
             "QUIT"
         },
         new string[] {
-            "",
             "EASY",
             "HARD"
+        },
+        new string[] {
+            "YES",
+            "NO"
         }
-
     };
+
     private const int MENU_TOP = 230;
     private const int MENU_LEFT = 410;
     private const int MENU_GAP = 10;
@@ -63,9 +66,9 @@ static class MenuController
     private const int MAIN_MENU_TOP_SCORES_BUTTON = 2;
 
     private const int MAIN_MENU_QUIT_BUTTON = 3;
-    private const int SETUP_MENU_EASY_BUTTON = 0;
-    private const int SETUP_MENU_MEDIUM_BUTTON = 1;
-    private const int SETUP_MENU_HARD_BUTTON = 2;
+    //private const int SETUP_MENU_EASY_BUTTON = 0;
+    private const int SETUP_MENU_MEDIUM_BUTTON = 0;
+    private const int SETUP_MENU_HARD_BUTTON = 1;
 
     private const int SETUP_MENU_EXIT_BUTTON = 3;
     private const int GAME_MENU_RETURN_BUTTON = 0;
@@ -74,7 +77,12 @@ static class MenuController
     private const int GAME_MENU_QUIT_BUTTON = 2;
     private static readonly Color MENU_COLOR = SwinGame.RGBAColor(2, 167, 252, 255);
 
+    private const int QUIT_MENU = 3;
+    private const int QUIT_MENU_YES = 0;
+    private const int QUIT_MENU_NO = 1;
+
     private static readonly Color HIGHLIGHT_COLOR = SwinGame.RGBAColor(1, 57, 86, 255);
+
     /// <summary>
     /// Handles the processing of user input when the main menu is showing
     /// </summary>
@@ -94,6 +102,17 @@ static class MenuController
         if (!handled) {
             HandleMenuInput(MAIN_MENU, 0, 0);
         }
+    }
+
+    public static void HandleQuitMenuInput()
+    {
+        // bool handled = false;
+        // handled = 
+        HandleMenuInput(QUIT_MENU, 1, 0);
+
+        // if (!handled) {
+        //     HandleMenuInput(MAIN_MENU, 0, 0);
+        // }
     }
 
     /// <summary>
@@ -122,8 +141,8 @@ static class MenuController
         }
 
         if (SwinGame.MouseClicked(MouseButton.LeftButton)) {
-            int i = 0;
-            for (i = 0; i <= _menuStructure[menu].Length - 1; i++) {
+            //int i = 0;
+            for (int i = 0; i <= _menuStructure[menu].Length - 1; i++) {
                 //IsMouseOver the i'th button of the menu
                 if (IsMouseOverMenu(i, level, xOffset)) {
                     PerformMenuAction(menu, i);
@@ -174,7 +193,15 @@ static class MenuController
         //SwinGame.DrawText("Settings", Color.White, GameFont("ArialLarge"), 50, 50)
 
         DrawButtons(MAIN_MENU);
-        DrawButtons(SETUP_MENU, 1, 85);
+        DrawButtons(SETUP_MENU, 1, 90);
+    }
+
+    public static void DrawQuit()
+    {
+        //Clears the Screen to Black
+        //SwinGame.DrawText("Settings", Color.White, GameFont("ArialLarge"), 50, 50)
+
+        DrawButtons(QUIT_MENU, 1, 0);
     }
 
     /// <summary>
@@ -203,8 +230,8 @@ static class MenuController
         btnLeft = MENU_LEFT + BUTTON_SEP + xOffset;
         //* level
 
-        int i = 0;
-        for (i = 0; i <= _menuStructure[menu].Length - 1; i++) {
+        //int i = 0;
+        for (int i = 0; i <= _menuStructure[menu].Length - 1; i++) {
 
             int btnTop = 0;
         	btnTop = MENU_TOP + (MENU_GAP + BUTTON_HEIGHT) * (i);
@@ -237,8 +264,11 @@ static class MenuController
     /// <returns>true if the mouse is over the button</returns>
     private static bool IsMouseOverMenu(int button, int level, int xOffset)
     {
-    	int btnTop = MENU_TOP + (MENU_GAP + BUTTON_HEIGHT) * (button + xOffset);
-        int btnLeft = MENU_LEFT + BUTTON_SEP;
+    	int btnTop = MENU_TOP + (MENU_GAP + BUTTON_HEIGHT) * (button);
+        int btnLeft = MENU_LEFT + BUTTON_SEP + xOffset;
+
+        // int btnTop = MENU_TOP + (MENU_GAP + BUTTON_HEIGHT) * (button + xOffset);
+        // int btnLeft = MENU_LEFT + BUTTON_SEP;
 
         // int btnTop = MENU_TOP - (MENU_GAP + BUTTON_HEIGHT) * level;
         // int btnLeft = MENU_LEFT + BUTTON_SEP * (button + xOffset);
@@ -263,6 +293,9 @@ static class MenuController
             case GAME_MENU:
                 PerformGameMenuAction(button);
                 break;
+			case QUIT_MENU:
+                PerformQuitMenuAction(button);
+                break; 
         }
     }
 
@@ -283,7 +316,7 @@ static class MenuController
                 AddNewState(GameState.ViewingHighScores);
                 break;
             case MAIN_MENU_QUIT_BUTTON:
-                EndCurrentState();
+                AddNewState(GameState.QuitConfirm);
                 break;
         }
     }
@@ -309,6 +342,16 @@ static class MenuController
         EndCurrentState();
     }
 
+    private static void PerformQuitMenuAction(int button)
+    {
+        if (button == QUIT_MENU_YES)
+        {
+            AddNewState(GameState.Quitting); 
+        } else {
+            EndCurrentState();
+        }      
+    }
+
     /// <summary>
     /// The game menu was clicked, perform the button's action.
     /// </summary>
@@ -326,7 +369,7 @@ static class MenuController
                 //end game
                 break;
             case GAME_MENU_QUIT_BUTTON:
-                AddNewState(GameState.Quitting);
+                AddNewState(GameState.QuitConfirm);
                 break;
         }
     }

@@ -56,6 +56,11 @@ public enum GameState
     EndingGame,
 
     /// <summary>
+    /// The player is attempting to quit the game
+    /// </summary>
+    QuitConfirm,
+
+    /// <summary>
     /// The player has quit. Show ending credits and terminate the game
     /// </summary>
     Quitting

@@ -21,7 +21,7 @@ using static MenuController;
 /// </remarks>
 static class HighScoreController
 {
-    private const int NAME_WIDTH = 3;
+    private const int NAME_WIDTH = 8;
 
     private const int SCORES_LEFT = 490;
     /// <summary>

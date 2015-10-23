@@ -106,13 +106,7 @@ static class MenuController
 
     public static void HandleQuitMenuInput()
     {
-        // bool handled = false;
-        // handled = 
         HandleMenuInput(QUIT_MENU, 1, 0);
-
-        // if (!handled) {
-        //     HandleMenuInput(MAIN_MENU, 0, 0);
-        // }
     }
 
     /// <summary>

@@ -190,6 +190,9 @@ public class Player : IEnumerable<Ship>
             case ResultOfAttack.Miss:
                 _misses += 1;
                 break;
+			case ResultOfAttack.ShotAlready:
+                _misses += 1;
+                break;
         }
 
         return result;
